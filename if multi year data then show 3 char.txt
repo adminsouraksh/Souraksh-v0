@@ -1,0 +1,9 @@
+if multi year data then show 3 charts
+
+1- Bar chart for sales per year- Horizontal
+2. Bar chart for sales per month upon year selection
+3. Line chart for sales per month overlay years.
+
+If single year data
+
+1. Bar chart for sales per month

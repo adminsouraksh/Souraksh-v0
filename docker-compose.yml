@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  # Node.js Backend Service
+  node-backend:
+    build:
+      context: ./metainflu/backend
+      dockerfile: Dockerfile
+    container_name: node-backend
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      # Add other environment variables like database connection strings
+      # - MONGO_URI=mongodb://mongo:27017/metainflu
+    networks:
+      - app-network
+    volumes:
+      - ./metainflu/backend:/app # Optional: for development hot-reloading
+      - /app/node_modules # Ensures container's node_modules are used
+
+  # Python AI/ML Service (assuming code from root /backend is moved)
+  python-service:
+    build:
+      context: ./backend # Uses the code from the root 'backend' folder
+      dockerfile: Dockerfile
+    container_name: python-service
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    networks:
+      - app-network
+
+  # Vue.js Frontend Service
+  frontend:
+    build:
+      context: ./metainflu/frontend/client
+      dockerfile: Dockerfile
+    container_name: frontend
+    restart: unless-stopped
+    ports:
+      - "8080:80" # NGINX in the container runs on port 80
+    depends_on:
+      - node-backend
+    networks:
+      - app-network
+
+  # NGINX Reverse Proxy
+  proxy:
+    build:
+      context: ./proxy
+      dockerfile: Dockerfile # Assumes a Dockerfile exists in /proxy
+    container_name: proxy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+      - node-backend
+      - python-service
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

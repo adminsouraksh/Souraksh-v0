@@ -1,0 +1,34 @@
+services:
+  # Proxy Service (Public)
+  - name: proxy
+    type: web
+    plan: starter
+    env: docker
+    dockerContext: ./proxy
+    dockerfilePath: ./Dockerfile.render
+    envVars:
+      - key: PORT
+        value: 80
+  # Frontend Service (Internal)
+  - name: frontend
+    type: web
+    plan: starter
+    env: docker
+    dockerContext: ./metainflu/frontend/client
+    dockerfilePath: ./Dockerfile
+
+  # Node.js Backend Service (Internal)
+  - name: node-backend
+    type: web
+    plan: starter
+    env: docker
+    dockerContext: ./metainflu/backend
+    dockerfilePath: ./Dockerfile
+
+  # Python AI Service (Internal)
+  - name: python-service
+    type: web
+    plan: starter
+    env: docker
+    dockerContext: ./backend
+    dockerfilePath: ./Dockerfile
