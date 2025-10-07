@@ -14,12 +14,11 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 5000;
-const mongoURI = process.env.MONGO_URI; 
+const mongoURI = process.env.MONGO_URI;
 
 // --- ✅ CORRECTED CORS MIDDLEWARE ---
-// Added the frontend's actual origin 'http://localhost:8080' to the list of allowed origins.
-// This tells the server to accept requests from your Vue.js development server.
-const allowedOrigins = ['http://localhost', 'http://localhost:5173', 'http://localhost:8080'];
+// Added the frontend's actual origin to the list of allowed origins.
+const allowedOrigins = ['https://souraksh-v0-gusvoz8rn-adminsourakshs-projects.vercel.app'];
 
 app.use(cors({
   origin: function (origin, callback) {
@@ -71,4 +70,3 @@ app.use(errorHandler);
 app.listen(port, () => {
   console.log(`🚀 Server running on port ${port}`);
 });
-

@@ -1,7 +1,7 @@
 // File: frontend/client/src/services/forecastService.js
 import axios from 'axios';
 
-const API_URL = 'https://souraksh-v0-1.onrender.com/api/forecast';
+const API_URL = 'https://souraksh-v0po.onrender.com/api/forecast';
 
 // Function to get the auth token from localStorage
 const getAuthToken = () => {
