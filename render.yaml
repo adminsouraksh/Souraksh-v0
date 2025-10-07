@@ -2,7 +2,7 @@ services:
   # Proxy Service (Public)
   - name: proxy
     type: web
-    plan: starter
+    plan: free
     env: docker
     dockerContext: ./proxy
     dockerfilePath: ./Dockerfile.render
@@ -12,7 +12,7 @@ services:
   # Frontend Service (Internal)
   - name: frontend
     type: web
-    plan: starter
+    plan: free
     env: docker
     dockerContext: ./metainflu/frontend/client
     dockerfilePath: ./Dockerfile
@@ -20,7 +20,7 @@ services:
   # Node.js Backend Service (Internal)
   - name: node-backend
     type: web
-    plan: starter
+    plan: free
     env: docker
     dockerContext: ./metainflu/backend
     dockerfilePath: ./Dockerfile
@@ -28,7 +28,7 @@ services:
   # Python AI Service (Internal)
   - name: python-service
     type: web
-    plan: starter
+    plan: free
     env: docker
     dockerContext: ./backend
     dockerfilePath: ./Dockerfile
