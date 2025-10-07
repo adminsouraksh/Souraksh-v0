@@ -61,7 +61,7 @@ async def options_handler(request: Request, full_path: str):
     return Response(
         status_code=200,
         headers={
-            "Access-Control-Allow-Origin": "https://souraksh-v0-gusvoz8rn-adminsourakshs-projects.vercel.app",
+            "Access-Control-Allow-Origin": "http://localhost:5173",
             "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
             "Access-Control-Allow-Headers": "*",
             "Access-Control-Max-Age": "86400",
