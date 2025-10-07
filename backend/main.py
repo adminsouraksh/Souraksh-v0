@@ -19,7 +19,9 @@ app = FastAPI(
 # Replaced the custom middleware with FastAPI's built-in CORSMiddleware
 # for better reliability.
 origins = [
-    "https://souraksh-v0.vercel.app", # Updated to the correct frontend URL
+    "https://souraksh-v0.vercel.app",
+     "https://www.sourakshailabs.com",
+    "http://localhost:5173", # Updated to the correct frontend URL
     "http://localhost:8080", # Also good to keep for local development
 ]
 

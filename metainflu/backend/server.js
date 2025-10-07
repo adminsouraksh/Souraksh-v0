@@ -18,7 +18,7 @@ const mongoURI = process.env.MONGO_URI;
 
 // --- ✅ CORRECTED CORS MIDDLEWARE ---
 // Added the frontend's actual origin to the list of allowed origins.
-const allowedOrigins = ['https://souraksh-v0.vercel.app'];
+const allowedOrigins = ['https://souraksh-v0.vercel.app','https://www.sourakshailabs.com' , 'http://localhost:5173']; // Updated to the correct frontend URL
 
 app.use(cors({
   origin: function (origin, callback) {
