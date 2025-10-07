@@ -3,7 +3,7 @@
 // This file handles all API calls related to user authentication
 
 // The base URL of your backend API
-const API_URL = 'http://localhost:5000/api/auth/';
+const API_URL = 'https://souraksh-v0-1.onrender.com/api/auth/';
 
 /**
  * Registers a new user by sending a POST request to the backend.
