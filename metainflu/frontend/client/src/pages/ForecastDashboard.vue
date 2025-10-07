@@ -67,6 +67,7 @@ import SimpleUploadArea from '../components/forecast/SimpleUploadArea.vue';
 import ConfigForm from '../components/forecast/ConfigForm.vue';
 import ResultsPanel from '../components/forecast/ResultsPanel.vue';
 import { generateForecast } from '../services/forecastService';
+import { formatApiError } from '../lib/forecastUtils';
 
 const currentStep = ref('upload');
 

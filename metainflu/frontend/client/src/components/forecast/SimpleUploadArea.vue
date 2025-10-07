@@ -44,6 +44,7 @@
 
 <script setup>
 import { ref } from 'vue';
+import { fileUtils, columnDetection } from '../../lib/forecastUtils';
 
 const props = defineProps({
   uploadState: Object,
