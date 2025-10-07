@@ -41,12 +41,7 @@ export async function generateForecast(params) {
     }
 
     const formData = new FormData();
-    
-    // --- ✅ ADD THIS LINE ---
-    // Cloning the file object can help with mobile browser compatibility
-    const file = new Blob([params.file], { type: params.file.type });
-    
-    formData.append('file', file, params.file.name);
+    formData.append('file', params.file);
     formData.append('industry', params.industry);
     formData.append('country', params.country);
     formData.append('freq', params.freq);
