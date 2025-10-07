@@ -18,7 +18,7 @@ const mongoURI = process.env.MONGO_URI;
 
 // --- ✅ CORRECTED CORS MIDDLEWARE ---
 // Added the frontend's actual origin to the list of allowed origins.
-const allowedOrigins = ['http://localhost:5173'];
+const allowedOrigins = ['https://souraksh-v0.vercel.app'];
 
 app.use(cors({
   origin: function (origin, callback) {
@@ -36,7 +36,7 @@ app.use(cors({
 
 app.use(express.json());
 
-// Database Connection
+// Database Connection ty
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
