@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException, Request, Response
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from starlette.middleware.base import BaseHTTPMiddleware
 import os
 from dotenv import load_dotenv
 
@@ -15,26 +15,21 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Simple CORS middleware
-class SimpleCORSMiddleware(BaseHTTPMiddleware):
-    async def dispatch(self, request: Request, call_next):
-        # For preflight requests
-        if request.method == "OPTIONS":
-            response = Response()
-            response.headers["Access-Control-Allow-Origin"] = "https://souraksh-v0-gusvoz8rn-adminsourakshs-projects.vercel.app"
-            response.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, DELETE, OPTIONS"
-            response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization"
-            response.headers["Access-Control-Max-Age"] = "86400"
-            return response
-        
-        # For regular requests
-        response = await call_next(request)
-        response.headers["Access-Control-Allow-Origin"] = "https://souraksh-v0-gusvoz8rn-adminsourakshs-projects.vercel.app"
-        response.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, DELETE, OPTIONS"
-        response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization"
-        return response
+# --- ✅ RECOMMENDED CORS MIDDLEWARE ---
+# Replaced the custom middleware with FastAPI's built-in CORSMiddleware
+# for better reliability.
+origins = [
+    "https://souraksh-v0.vercel.app", # Updated to the correct frontend URL
+    "http://localhost:8080", # Also good to keep for local development
+]
 
-app.add_middleware(SimpleCORSMiddleware)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Include routers
 app.include_router(forecast.router, prefix="/api", tags=["forecast"])
@@ -50,25 +45,6 @@ async def root():
 @app.get("/health")
 async def health_check():
     return {"status": "healthy"}
-
-@app.get("/cors-test")
-async def cors_test():
-    return {"message": "CORS test successful", "status": "ok"}
-
-@app.options("/{full_path:path}")
-async def options_handler(request: Request, full_path: str):
-    """Handle all OPTIONS requests"""
-    return Response(
-        status_code=200,
-        headers={
-            "Access-Control-Allow-Origin": "https://souraksh-v0.vercel.app",
-            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-            "Access-Control-Allow-Headers": "*",
-            "Access-Control-Max-Age": "86400",
-        }
-    )
-
-
 
 @app.exception_handler(Exception)
 async def global_exception_handler(request, exc):
