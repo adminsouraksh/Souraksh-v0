@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Changed: Removed the trailing slash from the API_URL
-const API_URL = 'https://souraksh-v0po.onrender.com/api/forecast';
+const API_URL = 'https://souraksh-v0po.onrender.com/api';
 
 const getAuthToken = () => {
   const user = JSON.parse(localStorage.getItem('user'));
