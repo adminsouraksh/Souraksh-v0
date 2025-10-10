@@ -35,7 +35,7 @@
                             <p class="text-dark-slate-gray mb-2"><strong>Sources:</strong></p>
                             <ul class="list-disc list-inside space-y-1">
                                 <li v-for="(source, index) in data.ai_adjustment.sources" :key="index">
-                                    <a :href="source" target="_blank" rel="noopener noreferrer" class="text-soft-blue hover:underline">
+                                    <a :href="source" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline">
                                         {{ source }}
                                     </a>
                                 </li>
@@ -96,6 +96,10 @@
                       <div v-if="data.meta.holidays_used && data.meta.holidays_used.length > 0" class="flex justify-between">
                         <span class="font-medium text-dark-slate-gray">Holidays:</span>
                         <span class="text-dark-gray">{{ data.meta.holidays_used.length }} included</span>
+                      </div>
+                      <div class="flex justify-between">
+                        <span class="font-medium text-dark-slate-gray">Data Points:</span>
+                        <span class="text-dark-gray">{{data.meta.processed_rows}} / {{data.meta.original_rows}}</span>
                       </div>
                     </div>
                   </div>
